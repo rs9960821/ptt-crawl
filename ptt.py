@@ -7,6 +7,7 @@ class spider():
     def __init__(self):
         self.baseurl = "https://www.ptt.cc/bbs/"
         self.headers = {"User-Agent":"Mozilla/5.0"}
+        #與系統告知已滿18歲
         self.cookies = {'over18': '1'}
         self.page = 1
         self.page2 = 1
@@ -47,6 +48,7 @@ class spider():
         L_list = [[i]+['https://www.ptt.cc'+j] for i, j in zip(r_list, t_list)]
         # print(L_list)
         self.writeData(L_list)
+        
     def work(self):
         # url = self.baseurl + "index.html"
         url = 'https://www.ptt.cc/bbs/index.html'
@@ -59,7 +61,7 @@ class spider():
             b = (i.select('.board-name')[0].text)
             alist.append(a)
             blist.append(b)  
-
+        #搜尋匹配看板
         name = input('Want to search class:')
         for x in range(128):
             if name == alist[x]:
